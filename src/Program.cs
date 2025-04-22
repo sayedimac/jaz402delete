@@ -1,3 +1,5 @@
+using Azure.Data.Tables;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

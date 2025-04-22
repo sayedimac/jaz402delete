@@ -16,8 +16,9 @@ public class AzureTableStorageModel : PageModel
     public void OnGet()
     {
         string connectionString = _configuration["AzureTableStorageConnectionString"];
+        string tableName = _configuration["AzureTableStorageTableName"];
         TableServiceClient tableServiceClient = new TableServiceClient(connectionString);
-        TableClient tableClient = tableServiceClient.GetTableClient("YourTableName");
+        TableClient tableClient = tableServiceClient.GetTableClient("uktest");
 
         Pageable<TableEntity> queryResults = tableClient.Query<TableEntity>();
         TableEntities = queryResults.ToList();
