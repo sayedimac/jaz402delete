@@ -1,0 +1,34 @@
+@page
+@model AzureTableStorageModel
+@{
+    ViewData["Title"] = "Azure Table Storage";
+}
+
+<h1>Azure Table Storage Data</h1>
+
+@if (Model.TableEntities != null && Model.TableEntities.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>PartitionKey</th>
+                <th>RowKey</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var entity in Model.TableEntities)
+            {
+                <tr>
+                    <td>@entity.PartitionKey</td>
+                    <td>@entity.RowKey</td>
+                    <td>@entity.Timestamp</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No data found in the Azure Table Storage.</p>
+}

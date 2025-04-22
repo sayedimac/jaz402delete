@@ -3,6 +3,14 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 
+// Register the configuration for Azure Table Storage in the dependency injection container
+builder.Services.AddSingleton<TableServiceClient>(sp =>
+{
+    var configuration = sp.GetRequiredService<IConfiguration>();
+    string connectionString = configuration["AzureTableStorageConnectionString"];
+    return new TableServiceClient(connectionString);
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
